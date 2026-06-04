@@ -1,8 +1,9 @@
-const IS_PRODUCTION = import.meta.env.MODE === 'production'
+// ビルドモードに応じてURLを切り替え
+const BASE_URL = import.meta.env.MODE === 'production'
+  ? 'https://cnhgmlmnsmfvawxmcoai.supabase.co/functions/v1/training_record'
+  : 'http://127.0.0.1:54321/functions/v1/training_record'
 
-// BASE URL と認証トークンを .env ファイルから読み込む
-const BASE_URL = IS_PRODUCTION ? import.meta.env.VITE_PRODUCTION_API_BASE_URL : import.meta.env.VITE_DEVELOPMENT_API_BASE_URL
-const AUTHORIZATION = import.meta.env.VITE_API_AUTHORIZATION
+const AUTHORIZATION = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
 
 // エンドポイントの定義
 export const API_ENDPOINTS = {
