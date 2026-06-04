@@ -1,0 +1,63 @@
+.recordFooterContainer {
+  display: flex;
+  justify-content: space-around; /* 水平方向に均等配置 */
+  border-top: 1px solid rgba(0, 0, 0, 0.2); /* 上部に枠線 */
+  padding-top: 2px;
+  background-color: #df5656; /* 半透明の背景色 */
+}
+
+.footerItem {
+  background: transparent; /* 背景を透明に */
+  border: none;            /* 枠線を消す */
+  padding: 0;              /* 内側の余白を消す */
+  outline: none;           /* クリック時の青い枠線を消す */
+  appearance: none;        /* ブラウザ固有のスタイルを排除 */
+  /* レイアウトの調整 */
+  display: flex;
+  flex-direction: column;  /* 画像と文字を縦並びに */
+  align-items: center;     /* 中央寄せ */
+  cursor: pointer;         /* マウスホバーでポインターにする */
+  color: inherit;          /* 文字色を親から継承 */
+  font-family: inherit;    /* フォントを親から継承 */
+}
+
+/* 共通 */
+.linkImg {
+  background-repeat: no-repeat;
+  background-size: contain; /* 画像をボタン内に収める */
+  background-position: center; /* 画像を中央に配置 */
+  width: 30px; /* 画像に合わせてボタンの幅を設定 */
+  height: 30px; /* 画像に合わせてボタンの高さを設定 */
+  margin: auto; /* ボタンの中央に画像を表示 */
+  border: none; /* ボタンのボーダーを削除 */
+  padding: 0; /* ボタンのパディングを削除 */
+  cursor: pointer; /* カーソルをポインターに変更 */
+}
+.footerItem a {
+  text-decoration: none; /* リンクの取り消し線 */
+  color: inherit; /* 親要素の文字色を継承 */
+}
+.titleText {
+  font-size: 10px;
+  color: #ffffff;
+}
+/** 記録 */
+.recordImg {
+  background-image: url('../../assets/record.png');
+}
+/** 記録一覧 */
+.referenceImg {
+  background-image: url('../../assets/reference.png');
+}
+/** 記録検索 */
+.searchImg {
+  background-image: url('../../assets/search.png');
+}
+/** メニュー */
+.menuImg {
+  background-image: url('../../assets/menu.png');
+}
+/** 過去記録 */
+.oldRecordImg {
+  background-image: url('../../assets/oldRecord.png');
+}

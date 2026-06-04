@@ -1,0 +1,29 @@
+.todayRecordContainer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.partName {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.section {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 0 20px;
+}
+
+.setDetail {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+.setRow {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}

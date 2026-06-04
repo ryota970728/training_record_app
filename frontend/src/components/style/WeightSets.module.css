@@ -1,0 +1,21 @@
+/* 重量と回数 */
+.weightSetsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 重量の入力フィールド */
+.weightInput {
+  margin: 5px 3px 5px 0px;
+  width: 50px;
+  font-size: 1.2rem;;
+}
+
+/* 回数の入力フィールド */
+.repsInput{
+  margin: 5px 3px 5px 10px;
+  width: 50px;
+  font-size: 1.2rem;
+}

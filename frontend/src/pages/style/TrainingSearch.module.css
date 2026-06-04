@@ -1,0 +1,87 @@
+/** 検索エリア */
+.searchAreaWrapper {
+  padding: 10px;
+  border: solid 0.1rem rgb(0,0,0,0.2);
+  border-radius: 2%;
+  margin: 1rem;
+}
+/* 部位-コンテナ */
+.partContainer {
+  display: flex;
+  flex-wrap: wrap; /* 子要素の折り返し設定 */
+  justify-content: center; /* 水平方向の配置設定 */
+  padding: 0 20%;
+  gap: 0 10px; /* 要素間の間隔を設定 */
+  margin: 5px;
+}
+
+/* 部位-ラジオボタン */
+.partRadio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px; /* ラベル間の下マージンを設定 */
+  font-size: 1.3rem;
+}
+
+/* 種目-コンテナ */
+.menuContainer {
+  display: inline-block;
+  margin: 5px;
+}
+
+/* 種目-ドロップダウン */
+.menuSelect {
+  width: auto;
+  width: auto;
+  height: 25px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* 検索ボタン */
+.searchButton {
+  margin: 15px;
+  display       : inline-block;
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 6px 12px;   /* 余白       */
+  background    : #007fff;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  font-size: 1rem;             /* フォントサイズ */;
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #007fff;    /* 枠の指定 */
+}
+
+/** 検索結果一覧 */
+.searchResultWrapper {
+  padding: 5%;
+}
+/* 検索結果一覧コンテナ */
+.searchResultContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  padding: 0.5rem 2rem;
+  border-bottom: 1px solid black;
+}
+/* 日付 */
+.createDate {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  text-align: left;
+}
+/* 備考 */
+.note {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  text-align: left;
+  font-size: 0.8rem;
+
+}
+/* セット詳細 */
+.setDetail {
+  text-align: right;
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+}

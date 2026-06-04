@@ -1,0 +1,9 @@
+.headerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh; /* ヘッダー部分の高さを5vhに設定 */
+}
+.headerTitle {
+  font-weight: bold;
+}
