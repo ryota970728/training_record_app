@@ -123,7 +123,10 @@ export const RecordForm = () => {
               name="part"
               value={part.part_id}
               checked={selectedPartId === part.part_id}
-              onChange={() => setSelectedPartId(part.part_id)}
+              onChange={() => {
+                setSelectedPartId(part.part_id)
+                setSelectedMenuName('')
+              }}
             />
             {part.part_name}
           </label>
