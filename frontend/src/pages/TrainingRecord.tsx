@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { useAtom } from 'jotai'
 import { useTraining } from '../features/hooks/useTraining'
 import { selectedPartIdAtom, selectedMenuNameAtom } from '../features/atoms/trainingAtom'
+import { getLocalDateString } from '../utils/date'
 import { WeightSets } from '../components/WeightSets'
 
 type WeightSetValue = {
@@ -60,7 +61,7 @@ export const TrainingRecord = () => {
         weight: Number(item.weight) || 0,
         current_set: i + 1
       })),
-      create_date: new Date().toISOString().slice(0, 10),
+      create_date: getLocalDateString(),
       note: '',
     }
     console.log('登録するトレーニング記録:', record)

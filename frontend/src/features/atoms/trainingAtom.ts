@@ -2,11 +2,18 @@ import { atom } from 'jotai'
 import type { RecordData } from '../../types/types'
 
 export const trainingAtom = atom({
+  // === 記録状態の管理 ===
   selectedPartId: 1,
   selectedMenuName: '',
   partData: [],
   menuData: [],
   recordData: [],
+  // === 検索状態の管理 ===
+  searchSelectedPartId: 1,
+  searchSelectedMenuName: '',
+  searchPartData: [],
+  searchMenuData: [],
+  searchRecordData: [],
 })
 
 /**
@@ -18,6 +25,16 @@ export const selectedPartIdAtom = atom(
     set(trainingAtom, {
       ...get(trainingAtom),
       selectedPartId: newPartId,
+    })
+  }
+)
+
+export const searchSelectedPartIdAtom = atom(
+  (get) => get(trainingAtom).searchSelectedPartId,
+  (get, set, newPartId: number) => {
+    set(trainingAtom, {
+      ...get(trainingAtom),
+      searchSelectedPartId: newPartId,
     })
   }
 )
@@ -35,8 +52,42 @@ export const selectedMenuNameAtom = atom(
   }
 )
 
+export const searchSelectedMenuNameAtom = atom(
+  (get) => get(trainingAtom).searchSelectedMenuName ?? '',
+  (get, set, newMenuName: string) => {
+    set(trainingAtom, {
+      ...get(trainingAtom),
+      searchSelectedMenuName: newMenuName,
+    })
+  }
+)
+
+type WeightSetValue = {
+  weight: string
+  reps: string
+}
+
+const defaultWeightSets: WeightSetValue[] = Array.from({ length: 3 }, () => ({ weight: '', reps: '' }))
+
 export const searchPartNameAtom = atom('')
-export const filterRecordListAtom = atom<RecordData[]>([])
+export const searchFilterRecordListAtom = atom<RecordData[]>([])
 export const searchNumberStrAtom = atom('')
+
+export const recordFormSetCountAtom = atom<number>(3)
+export const recordFormWeightSetsAtom = atom<WeightSetValue[]>(defaultWeightSets)
+export const recordFormNoteAtom = atom<string>('')
+
+export const resetRecordFormAtom = atom(
+  null,
+  (_get, set) => {
+    set(selectedPartIdAtom, 1)
+    set(selectedMenuNameAtom, '')
+    set(recordFormSetCountAtom, 3)
+    set(recordFormWeightSetsAtom, defaultWeightSets)
+    set(recordFormNoteAtom, '')
+  }
+)
+
+export type { WeightSetValue }
 
 export default trainingAtom

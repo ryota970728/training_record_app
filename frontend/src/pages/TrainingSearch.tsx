@@ -2,23 +2,23 @@ import { useTraining } from '../features/hooks/useTraining'
 import styles from './style/TrainingSearch.module.css'
 import { useAtom } from 'jotai'
 import {
-  selectedPartIdAtom,
-  selectedMenuNameAtom,
+  searchSelectedPartIdAtom,
+  searchSelectedMenuNameAtom,
   searchPartNameAtom,
-  filterRecordListAtom,
+  searchFilterRecordListAtom,
   searchNumberStrAtom,
 } from '../features/atoms/trainingAtom'
 
 export const TrainingSearch = () => {
   const { partDataList, menuDataList, recordDataList } = useTraining()
-  const [selectedPartId, setSelectedPartId] = useAtom(selectedPartIdAtom)
-  const [selectedMenuName, setSelectedMenuName] = useAtom(selectedMenuNameAtom)
+  const [searchSelectedPartId, setSearchSelectedPartId] = useAtom(searchSelectedPartIdAtom)
+  const [searchSelectedMenuName, setSearchSelectedMenuName] = useAtom(searchSelectedMenuNameAtom)
   const [searchPartName, setSearchPartName] = useAtom(searchPartNameAtom)
-  const [filterRecordList, setFilterRecordList] = useAtom(filterRecordListAtom)
+  const [searchFilterRecordList, setSearchFilterRecordList] = useAtom(searchFilterRecordListAtom)
   const [searchNumberStr, setSearchNumberStr] = useAtom(searchNumberStrAtom)
 
   // 選択された部位に基づいてメニューリストをフィルタリング
-  const filteredMenuList = menuDataList?.filter((menu) => menu.part_id === selectedPartId) ?? []
+  const filteredMenuList = menuDataList?.filter((menu) => menu.part_id === searchSelectedPartId) ?? []
 
   const getDayOfWeek = (dateString: string) => {
     const date = new Date(dateString)
@@ -27,17 +27,17 @@ export const TrainingSearch = () => {
   }
 
   const handleSearch = () => {
-    if (!selectedMenuName) {
+    if (!searchSelectedMenuName) {
       alert('メニューを選択してください')
       return
     }
 
     const filteredList = recordDataList
-      .filter((record) => record.menu_master.menu_name === selectedMenuName)
+      .filter((record) => record.menu_master.menu_name === searchSelectedMenuName)
       .sort((a, b) => new Date(b.create_date).getTime() - new Date(a.create_date).getTime())
 
-    setSearchPartName(selectedMenuName)
-    setFilterRecordList(filteredList)
+    setSearchPartName(searchSelectedMenuName)
+    setSearchFilterRecordList(filteredList)
     setSearchNumberStr(`：${filteredList.length}件`)
   }
 
@@ -50,8 +50,14 @@ export const TrainingSearch = () => {
               <input
                 type="radio"
                 value={part.part_id}
-                checked={selectedPartId === part.part_id}
-                onChange={() => setSelectedPartId(part.part_id)}
+                checked={searchSelectedPartId === part.part_id}
+                onChange={() => {
+                  setSearchSelectedPartId(part.part_id)
+                  setSearchSelectedMenuName('')
+                  setSearchPartName('')
+                  setSearchNumberStr('')
+                  setSearchFilterRecordList([])
+                }}
               />
               {part.part_name}
             </label>
@@ -60,8 +66,8 @@ export const TrainingSearch = () => {
         <div className={styles.menuContainer}>
           <select
             className={styles.menuSelect}
-            value={selectedMenuName}
-            onChange={(e) => setSelectedMenuName(e.target.value)}
+            value={searchSelectedMenuName}
+            onChange={(e) => setSearchSelectedMenuName(e.target.value)}
           >
             <option disabled value="">
               選択してください
@@ -82,12 +88,12 @@ export const TrainingSearch = () => {
       </div>
 
       <div className={styles.searchResultWrapper}>
-        <div className={styles.searchResultTitle} style={{ backgroundColor: partDataList.find((p) => p.part_id === selectedPartId)?.part_color || '#ccc', color: '#FFFFFF' }}>
+        <div className={styles.searchResultTitle} style={{ backgroundColor: partDataList.find((p) => p.part_id === searchSelectedPartId)?.part_color || '#ccc', color: '#FFFFFF' }}>
           {searchPartName} {searchNumberStr}
         </div>
 
-        {filterRecordList.length > 0 ? (
-          filterRecordList.map((record) => (
+        {searchFilterRecordList.length > 0 ? (
+          searchFilterRecordList.map((record) => (
             <div key={record.record_id} className={styles.searchResultContainer}>
               <div className={styles.createDate}>
                 {record.create_date} ({getDayOfWeek(record.create_date)})

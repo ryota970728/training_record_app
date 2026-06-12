@@ -1,47 +1,53 @@
-import { useState } from 'react'
-// import { useAtom } from 'jotai'
+import { useAtom } from 'jotai'
 import { useTraining } from '../features/hooks/useTraining'
-// import { selectedMenuNameAtom, selectedPartIdAtom } from '../features/atoms/trainingAtom'
+import {
+  selectedMenuNameAtom,
+  selectedPartIdAtom,
+  recordFormNoteAtom,
+  recordFormSetCountAtom,
+  recordFormWeightSetsAtom,
+  resetRecordFormAtom,
+} from '../features/atoms/trainingAtom'
+import { getLocalDateString } from '../utils/date'
 import { WeightSets } from './WeightSets'
 
 import style from './style/RecordForm.module.css'
+
+type WeightSetValue = {
+  weight: string
+  reps: string
+}
 
 export const RecordForm = () => {
   // 部位リスト、メニューリスト
   const { partDataList, menuDataList, submitRecord, isPending } = useTraining()
   // 選択中の部位IDを管理
-  // const [selectedPartId, setSelectedPartId] = useAtom(selectedPartIdAtom)
-  const [selectedPartId, setSelectedPartId] = useState(1)
+  const [selectedPartId, setSelectedPartId] = useAtom(selectedPartIdAtom)
   // 選択中のメニュー名を管理
-  // const [selectedMenuName, setSelectedMenuName] = useAtom(selectedMenuNameAtom)
-  const [selectedMenuName, setSelectedMenuName] = useState('')
+  const [selectedMenuName, setSelectedMenuName] = useAtom(selectedMenuNameAtom)
   // 選択された部位に基づいてメニューリストをフィルタリング
   const filteredMenuList = menuDataList?.filter((menu) => menu.part_id === selectedPartId) ?? []
 
   // セット数を管理
-  const [setCount, setSetCount] = useState(3)
+  const [setCount, setSetCount] = useAtom(recordFormSetCountAtom)
   // 重量とレップ数の詳細を管理
-  const [weightSets, setWeightSets] = useState<WeightSetValue[]>(
-    Array.from({ length: setCount }, () => ({ weight: '', reps: '' }))
-  )
-
-  type WeightSetValue = {
-    weight: string
-    reps: string
-  }
+  const [weightSets, setWeightSets] = useAtom(recordFormWeightSetsAtom)
 
   // 備考を管理
-  const [note, setNote] = useState('')
+  const [note, setNote] = useAtom(recordFormNoteAtom)
+  const [, resetRecordForm] = useAtom(resetRecordFormAtom)
 
   // セット数の追加ハンドラー
   const handleAddSet = () => {
-    setSetCount(setCount + 1)
+    const nextCount = setCount + 1
+    setSetCount(nextCount)
     setWeightSets((prev) => [...prev, { weight: '', reps: '' }])
   }
 
   // セット数の削除ハンドラー
   const handleRemoveSet = () => {
-    setSetCount(Math.max(1, setCount - 1))
+    const nextCount = Math.max(1, setCount - 1)
+    setSetCount(nextCount)
     setWeightSets((prev) => (prev.length > 1 ? prev.slice(0, -1) : prev))
   }
 
@@ -92,26 +98,19 @@ export const RecordForm = () => {
       setCount: weightSets.length,
       weight: Array.from({ length: weightSets.length }, (_, i) => Number(weightSets[i].weight) || 0),
       reps: Array.from({ length: weightSets.length }, (_, i) => Number(weightSets[i].reps) || 0),
-      createDate: new Date().toISOString().slice(0, 10),
-      note: '',
+      createDate: getLocalDateString(),
+      note,
     }
 
     submitRecord(record, {
       onSuccess: () => {
-        // alert('記録が正常に送信されました！')
+        resetRecordForm()
       },
       onError: () => {
         alert('記録の送信に失敗しました。再度お試しください。')
         return
       }
     })
-
-    // フォームの初期化
-    setSelectedPartId(1)
-    setSelectedMenuName('')
-    setSetCount(3)
-    setNote('')
-    setWeightSets(Array.from({ length: 3 }, () => ({ weight: '', reps: '' })))
   }
 
   return (

@@ -2,6 +2,7 @@
 import { useTraining } from '../features/hooks/useTraining'
 import { RecordForm } from '../components/RecordForm'
 import { ProgressCircular } from '../components/ProgressCircular'
+import { getLocalDateString } from '../utils/date'
 import styles from './style/TrainingHome.module.css'
 
 export const TrainingHome = () => {
@@ -20,7 +21,7 @@ export const TrainingHome = () => {
   //   setRecordFormCount(Math.max(1, recordFormCount - 1))
   // }
 
-  const todayRecordList = recordDataList.filter(record => record.create_date === new Date().toISOString().slice(0, 10))
+  const todayRecordList = recordDataList.filter(record => record.create_date === getLocalDateString())
 
   return (
     <div className="training-home">
