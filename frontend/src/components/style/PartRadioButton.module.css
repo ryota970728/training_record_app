@@ -1,0 +1,25 @@
+/* 部位-ラジオボタン */
+.partRadio {
+  display: flex;
+  cursor: pointer;
+  padding: 0.4rem;
+  min-width: 3rem;
+  justify-content: center;
+  border: 1px solid #ccc;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 5px; /* ラベル間の下マージンを設定 */
+  font-size: 1.3rem;
+  transition: all 0.2s ease; /* 変化をなめらかに */
+  user-select: none;        /* テキスト選択の防止 */
+}
+
+/* ラジオボタン丸ポチ非表示 */
+.partRadio input[type="radio"] {
+  display: none; /* ラジオボタンを非表示にする */
+}
+.partRadio:has(input[type="radio"]:checked) {
+  background-color: #dc6d6d; /* 選択時の背景色（例: 青） */
+  border-color: #df5656;     /* 選択時の枠線の色 */
+  color: #fff;                /* 選択時の文字色（白） */
+}

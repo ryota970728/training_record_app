@@ -10,6 +10,7 @@ import {
 } from '../features/atoms/trainingAtom'
 import { getLocalDateString } from '../utils/date'
 import { WeightSets } from './WeightSets'
+import { PartRadioButton } from './PartRadioButton'
 
 import style from './style/RecordForm.module.css'
 
@@ -117,19 +118,16 @@ export const RecordForm = () => {
     <div className={style.recordForm}>
       <div className={style.partContainer}>
         {partDataList?.map((part) => (
-          <label key={part.part_id} className={style.partRadio}>
-            <input
-              type="radio"
-              name="part"
-              value={part.part_id}
-              checked={selectedPartId === part.part_id}
-              onChange={() => {
-                setSelectedPartId(part.part_id)
-                setSelectedMenuName('')
-              }}
-            />
-            {part.part_name}
-          </label>
+          <PartRadioButton
+            key={part.part_id}
+            name="record-part"
+            part={part}
+            selectedPartId={selectedPartId}
+            onChange={(partId) => {
+              setSelectedPartId(partId)
+              setSelectedMenuName('')
+            }}
+          />
         ))}
       </div>
 

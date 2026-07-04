@@ -8,19 +8,9 @@
 /* 部位-コンテナ */
 .partContainer {
   display: flex;
-  flex-wrap: wrap; /* 子要素の折り返し設定 */
   justify-content: center; /* 水平方向の配置設定 */
-  padding: 0 20%;
-  gap: 0 10px; /* 要素間の間隔を設定 */
+  padding: 0 5%;
   margin: 5px;
-}
-
-/* 部位-ラジオボタン */
-.partRadio {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px; /* ラベル間の下マージンを設定 */
-  font-size: 1.3rem;
 }
 
 /* 種目-コンテナ */
@@ -62,7 +52,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   align-items: center;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1rem;
   border-bottom: 1px solid black;
 }
 /* 日付 */

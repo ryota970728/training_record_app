@@ -8,6 +8,7 @@ import {
   searchFilterRecordListAtom,
   searchNumberStrAtom,
 } from '../features/atoms/trainingAtom'
+import { PartRadioButton } from '../components/PartRadioButton'
 
 export const TrainingSearch = () => {
   const { partDataList, menuDataList, recordDataList } = useTraining()
@@ -46,21 +47,19 @@ export const TrainingSearch = () => {
       <div className={styles.searchAreaWrapper}>
         <div className={styles.partContainer}>
           {partDataList.map((part) => (
-            <label className={styles.partRadio} key={part.part_id}>
-              <input
-                type="radio"
-                value={part.part_id}
-                checked={searchSelectedPartId === part.part_id}
-                onChange={() => {
-                  setSearchSelectedPartId(part.part_id)
-                  setSearchSelectedMenuName('')
-                  setSearchPartName('')
-                  setSearchNumberStr('')
-                  setSearchFilterRecordList([])
-                }}
-              />
-              {part.part_name}
-            </label>
+            <PartRadioButton
+              key={part.part_id}
+              name="search-part"
+              part={part}
+              selectedPartId={searchSelectedPartId}
+              onChange={(partId) => {
+                setSearchSelectedPartId(partId)
+                setSearchSelectedMenuName('')
+                setSearchPartName('')
+                setSearchNumberStr('')
+                setSearchFilterRecordList([])
+              }}
+            />
           ))}
         </div>
         <div className={styles.menuContainer}>
