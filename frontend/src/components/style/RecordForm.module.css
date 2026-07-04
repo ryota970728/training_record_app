@@ -3,25 +3,41 @@
   padding: 10px;
   border: solid 0.1rem rgb(0,0,0,0.2);
   border-radius: 2%;
-  margin: 1rem;
+  margin: 0.5rem;
 }
 
 /* 部位-コンテナ */
 .partContainer {
   display: flex;
-  flex-wrap: wrap; /* 子要素の折り返し設定 */
   justify-content: center; /* 水平方向の配置設定 */
-  padding: 0 20%;
-  gap: 0 10px; /* 要素間の間隔を設定 */
+  padding: 0 5%;
   margin: 5px;
 }
 
 /* 部位-ラジオボタン */
 .partRadio {
   display: flex;
+  cursor: pointer;
+  padding: 0.4rem;
+  min-width: 3rem;
+  justify-content: center;
+  border: 1px solid #ccc;
   align-items: center;
+  text-align: center;
   margin-bottom: 5px; /* ラベル間の下マージンを設定 */
   font-size: 1.3rem;
+  transition: all 0.2s ease; /* 変化をなめらかに */
+  user-select: none;        /* テキスト選択の防止 */
+}
+
+/* ラジオボタン丸ポチ非表示 */
+.partRadio input[type="radio"] {
+  display: none; /* ラジオボタンを非表示にする */
+}
+.partRadio:has(input[type="radio"]:checked) {
+  background-color: #df5656; /* 選択時の背景色（例: 青） */
+  border-color: #df5656;     /* 選択時の枠線の色 */
+  color: #fff;                /* 選択時の文字色（白） */
 }
 
 /* 種目-コンテナ */
@@ -61,13 +77,12 @@
 
 /* 備考-コンテナ */
 .noteContainer {
-  margin: 5px;
+  margin-top: 1rem;
 }
 
 /* 備考-テキストエリア */
 .noteTextarea {
   font-size: 1rem;
-
 }
 
 .buttonsContainer {
@@ -75,7 +90,7 @@
   justify-content: center;
   align-items: center;
   gap: 2rem; /* ボタン間のスペースを設定 */
-  margin-top: 10px; /* 上部のマージンを設定 */
+  margin-top: 1rem; /* 上部のマージンを設定 */
 }
 /* コピーボタン */
 .copyButton {

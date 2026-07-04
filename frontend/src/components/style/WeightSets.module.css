@@ -3,19 +3,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1.5rem;
 }
 
-/* 重量の入力フィールド */
-.weightInput {
-  margin: 5px 3px 5px 0px;
-  width: 50px;
-  font-size: 1.2rem;;
+/* ラベル（入力枠と単位のセット） */
+.weightSetsContainer label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem; /* 数字と単位（kg/回）の隙間 */
 }
 
-/* 回数の入力フィールド */
-.repsInput{
-  margin: 5px 3px 5px 10px;
-  width: 50px;
-  font-size: 1.2rem;
+/* 重量/回数の入力フィールド */
+.weightInput,
+.repsInput {
+  width: 70px;
+  padding: 0.4rem 0;     /* ★上下の余白を調整し、左右の余白は0に */
+  font-size: 1.2rem;     /* 下線に対して数字が引き立つよう少し大きめに */
+  font-weight: 600;
+  text-align: center;
+  /* ★枠線を消して下線のみにする */
+  border: none;
+  border-bottom: 2px solid #ccc; 
+  background-color: transparent; /* ★背景を透明にして下線を強調 */
+  border-radius: 0;       /* 四角い角丸をリセット */
+  
+  outline: none;
+  transition: all 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
 }
