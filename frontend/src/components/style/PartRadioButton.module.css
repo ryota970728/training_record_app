@@ -2,7 +2,7 @@
 .partRadio {
   display: flex;
   cursor: pointer;
-  padding: 0.4rem;
+  padding: 0.25rem;
   min-width: 3rem;
   justify-content: center;
   border: 1px solid #ccc;
@@ -19,7 +19,6 @@
   display: none; /* ラジオボタンを非表示にする */
 }
 .partRadio:has(input[type="radio"]:checked) {
-  background-color: #dc6d6d; /* 選択時の背景色（例: 青） */
-  border-color: #df5656;     /* 選択時の枠線の色 */
   color: #fff;                /* 選択時の文字色（白） */
+  font-weight: bold;           /* 選択時の文字を太字にする */
 }

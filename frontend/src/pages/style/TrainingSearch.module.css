@@ -3,7 +3,7 @@
   padding: 10px;
   border: solid 0.1rem rgb(0,0,0,0.2);
   border-radius: 2%;
-  margin: 1rem;
+  margin: 0.5rem;
 }
 /* 部位-コンテナ */
 .partContainer {
@@ -37,6 +37,7 @@
   padding       : 6px 12px;   /* 余白       */
   background    : #007fff;     /* 背景色     */
   color         : #ffffff;     /* 文字色     */
+  width        : 25%;         /* 幅         */
   font-size: 1rem;             /* フォントサイズ */;
   line-height   : 1em;         /* 1行の高さ  */
   transition    : .3s;         /* なめらか変化 */
@@ -47,6 +48,13 @@
 .searchResultWrapper {
   padding: 5%;
 }
+
+/* 検索結果タイトル */
+.searchResultTitle
+{
+  font-weight: bold;
+}
+
 /* 検索結果一覧コンテナ */
 .searchResultContainer {
   display: grid;
