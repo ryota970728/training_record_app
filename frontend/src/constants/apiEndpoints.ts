@@ -1,9 +1,15 @@
-// ビルドモードに応じてURLを切り替え
-const BASE_URL = import.meta.env.MODE === 'production'
-  ? 'https://cnhgmlmnsmfvawxmcoai.supabase.co/functions/v1/training_record'
-  : 'http://127.0.0.1:54321/functions/v1/training_record'
+// 環境変数からAPI接続先と認証情報を取得
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const AUTHORIZATION = import.meta.env.VITE_API_AUTHORIZATION;
 
-const AUTHORIZATION = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'
+// 環境変数の設定漏れをチェック
+if (!BASE_URL) {
+  throw new Error('VITE_API_BASE_URL is not defined');
+}
+
+if (!AUTHORIZATION) {
+  throw new Error('VITE_API_AUTHORIZATION is not defined');
+}
 
 // エンドポイントの定義
 export const API_ENDPOINTS = {
