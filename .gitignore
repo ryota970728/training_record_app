@@ -1,0 +1,21 @@
+# Node.js
+node_modules/
+dist/
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Supabase local files
+supabase/.temp/
+supabase/.branches/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
