@@ -1,0 +1,6 @@
+.env
+
+# Supabase CLI temp files
+.temp/
+
+.DS_Store
